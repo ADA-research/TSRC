@@ -1,0 +1,16 @@
+{
+  "main_config": {
+    "file_name_patterns": {
+      "train": {
+        "txt": "{dataset_name}_TRAIN.txt",
+        "arff": "{dataset_name}_TRAIN.arff"
+      },
+      "test": {
+        "txt": "{dataset_name}_TEST.txt",
+        "arff": "{dataset_name}_TEST.arff"
+      },
+      "info_file": "^(?!{dataset_name}(_TRAIN|_TEST))\\.txt$\n"
+    },
+    "target_col_name": "target"
+  }
+}

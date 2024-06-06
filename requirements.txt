@@ -1,0 +1,9 @@
+torch==2.1.2
+torchvision==0.16.2
+torchaudio==2.1.2
+cuda-python==12.1
+numpy
+pandas
+matplotlib
+scikit-learn
+lightning==2.1.4

@@ -1,0 +1,3 @@
+[submodule "dependencies/ts2vec"]
+	path = dependencies/ts2vec
+	url = https://github.com/zhihanyue/ts2vec.git
