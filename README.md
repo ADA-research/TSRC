@@ -3,7 +3,7 @@
 [![CC BY 4.0][cc-by-shield]][cc-by]
 
 This repository contains the official implementation of the paper **Time Series Representations Classroom (TSRC): A
-Teacher-Student-based Framework for Interpretability-enhanced Unsupervised Time Series Representation Learning**".
+Teacher-Student-based Framework for Interpretability-enhanced Unsupervised Time Series Representation Learning**.
 
 Current status: submitted for journal publication (under review).
 
