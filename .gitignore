@@ -1,2 +1,10 @@
-experiments_outputs
 ./data
+.DS_Store
+**/.DS_Store
+**/__pycache__/
+**/cachedir/
+.idea
+.pytest_cache
+/data
+./experiments_outputs/**
+/.github
