@@ -6,8 +6,8 @@ from typing import Tuple
 from torch.utils.data import DataLoader
 from torch.utils.data.dataloader import default_collate
 
-from datasets.classes import UCRClassificationUnivariateDataset
-from datasets.modules.abstract import TimeSeriesClassificationDataModule
+from project_datasets.classes import UCRClassificationUnivariateDataset
+from project_datasets.modules.abstract import TimeSeriesClassificationDataModule
 from enums import TimeSeriesDatasetMode, \
     TimeSeriesClassificationDatasetSplittingStrategy
 from utils_general.data.strategies.normalization import create_data_normalizer

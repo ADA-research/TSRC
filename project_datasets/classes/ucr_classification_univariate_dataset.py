@@ -1,8 +1,8 @@
 __all__ = ['UCRClassificationUnivariateDataset']
 
-from datasets.classes.abstract import FixedTimeSeriesDatasetUnivariate
+from project_datasets.classes.abstract import FixedTimeSeriesDatasetUnivariate
 
-from datasets.classes.transformations import convert_numpy_to_tensor
+from project_datasets.classes.transformations import convert_numpy_to_tensor
 
 
 class UCRClassificationUnivariateDataset(FixedTimeSeriesDatasetUnivariate):

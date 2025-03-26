@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from torch.utils.data import Dataset
 
-from datasets.classes.transformations import expand_data_dimensionality
+from project_datasets.classes.transformations import expand_data_dimensionality
 from enums import TimeSeriesDatasetMode
 from utils_general import compose
 

@@ -11,7 +11,7 @@ import torch
 from lightning.pytorch import Trainer
 from pytorch_lightning.loggers import CSVLogger
 
-from datasets.utils import get_ucr_classification_univariate_datasets_lightning_modules
+from project_datasets.utils import get_ucr_classification_univariate_datasets_lightning_modules
 from enums import TimeSeriesDatasetMode
 from experiments.representaions import (do_extract_representations,
                                         create_recurrent_layers_units_list,

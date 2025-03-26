@@ -4,7 +4,7 @@ from pathlib import Path
 
 import lightning.pytorch as pl
 
-from datasets.utils import get_ucr_classification_univariate_datasets_lightning_modules
+from project_datasets.utils import get_ucr_classification_univariate_datasets_lightning_modules
 from experiments.baselines.mcl import extract_representations_mcl
 from experiments.utils import get_list_of_datasets_to_process, get_ucr_univariate_classification_datamodule_constants
 from utils_general import closest_power_of_2

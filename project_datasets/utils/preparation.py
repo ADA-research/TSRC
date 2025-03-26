@@ -5,8 +5,8 @@ from functools import partial
 from pathlib import Path
 from typing import List, Tuple, Union, TypeVar, Type
 
-from datasets.modules.abstract import TimeSeriesClassificationDataModule
-from datasets.modules.ucr_classification_univariate_module import UCRTimeSeriesClassificationUnivariateDataModule
+from project_datasets.modules.abstract import TimeSeriesClassificationDataModule
+from project_datasets.modules.ucr_classification_univariate_module import UCRTimeSeriesClassificationUnivariateDataModule
 
 DataModuleType = TypeVar('DataModuleType', bound=TimeSeriesClassificationDataModule)
 
