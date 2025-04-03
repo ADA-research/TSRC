@@ -1,54 +1,58 @@
-import logging
-import warnings
 from functools import partial
+import logging
 from pathlib import Path
-from typing import Tuple, List
+import warnings
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 from sklearn.impute import SimpleImputer
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from sklearn.model_selection import GridSearchCV, PredefinedSplit
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
-from sklearn.model_selection import GridSearchCV, PredefinedSplit
 
 from experiments.utils.filters import get_data_list_filter
 from experiments.utils.parsers import get_data_file_name_parser
 from utils_general import add_prefix_to_string
 
-__all__ = ['classify_and_evaluate_raw_data', 'classify_and_evaluate_representations']
+__all__ = ['classify_and_evaluate_representations']
 
 
-def get_classification_algorithm():
+def get_classification_algorithm(data_type: str, classification_algorithm_seed: int = 42):
     imputer = SimpleImputer(strategy='constant', fill_value=None)
     scaler = StandardScaler()
-    classifier_object = SVC(kernel='rbf',
-                            coef0=0.0,
-                            gamma='scale',
-                            shrinking=True,
-                            probability=False,
-                            tol=0.001,
-                            cache_size=200,
-                            class_weight=None,
-                            max_iter=10_000_000,
-                            decision_function_shape='ovr',
-                            random_state=42,
-                            verbose=False)
+    classifier_object = SVC(
+        kernel='rbf',
+        coef0=0.0,
+        gamma='scale',
+        shrinking=True,
+        probability=False,
+        tol=0.001,
+        cache_size=200,
+        class_weight=None,
+        max_iter=10_000_000,
+        decision_function_shape='ovr',
+        random_state=classification_algorithm_seed,
+        verbose=False,
+    )
 
-    pipeline = Pipeline([('imputer', imputer),
-                         ('scaler', scaler),
-                         ('svc', classifier_object)])
+    if data_type == 'representation':
+        pipeline = Pipeline([('imputer', imputer), ('scaler', scaler), ('svc', classifier_object)])
+    else:
+        raise ValueError(f'No defined classification for data type: {data_type}')
 
     return pipeline
 
 
-def classify_and_evaluate(data_files: dict[str, List[Path]],
-                          data_type: str,
-                          classification_results_output_folder_path: Path,
-                          datasets_to_skip: Tuple[str, ...] = None,
-                          output_files_prefix: str = None,
-                          seed_number: int = 42):
+def classify_and_evaluate(
+    data_files: dict[str, list[Path]],
+    data_type: str,
+    classification_results_output_folder_path: Path,
+    datasets_to_skip: tuple[str, ...] = None,
+    output_files_prefix: str = None,
+    classification_algorithm_seed: int = 42,
+):
     rows_for_df = list()
 
     file_name_parser = get_data_file_name_parser(data_type)
@@ -60,13 +64,19 @@ def classify_and_evaluate(data_files: dict[str, List[Path]],
         data_file_metadata = file_name_parser(train_data_file)
         dataset_name = data_file_metadata['dataset_name']
         if dataset_name in datasets_to_skip:
-            logging.info(f'Skipping file {train_data_file} because it is in the datasets to skip list.')
+            logging.info(
+                f'Skipping file {train_data_file} because it is in the datasets to skip list.'
+            )
             continue
 
         df_train_data = pd.read_csv(train_data_file)
 
-        valid_data_file = next(data_file for data_file in data_files['valid'] if dataset_name in data_file.name)
-        test_data_file = next(data_file for data_file in data_files['test'] if dataset_name in data_file.name)
+        valid_data_file = next(
+            data_file for data_file in data_files['valid'] if dataset_name in data_file.name
+        )
+        test_data_file = next(
+            data_file for data_file in data_files['test'] if dataset_name in data_file.name
+        )
 
         df_valid_data = pd.read_csv(valid_data_file)
         df_test_data = pd.read_csv(test_data_file)
@@ -83,9 +93,15 @@ def classify_and_evaluate(data_files: dict[str, List[Path]],
         y_test_true = df_test_data['label']
 
         # drop any columns that start with 'Unnamed'
-        df_train_features = df_train_features.loc[:, ~df_train_features.columns.str.contains('^Unnamed')]
-        df_valid_features = df_valid_features.loc[:, ~df_valid_features.columns.str.contains('^Unnamed')]
-        df_test_features = df_test_features.loc[:, ~df_test_features.columns.str.contains('^Unnamed')]
+        df_train_features = df_train_features.loc[
+            :, ~df_train_features.columns.str.contains('^Unnamed')
+        ]
+        df_valid_features = df_valid_features.loc[
+            :, ~df_valid_features.columns.str.contains('^Unnamed')
+        ]
+        df_test_features = df_test_features.loc[
+            :, ~df_test_features.columns.str.contains('^Unnamed')
+        ]
 
         train_features = df_train_features.to_numpy()
         valid_features = df_valid_features.to_numpy()
@@ -96,7 +112,7 @@ def classify_and_evaluate(data_files: dict[str, List[Path]],
         test_labels = y_test_true.to_numpy()
 
         with warnings.catch_warnings():
-            warnings.filterwarnings("ignore", category=FutureWarning)
+            warnings.filterwarnings('ignore', category=FutureWarning)
 
             combined_features = np.concatenate([train_features, valid_features], axis=0)
             combined_labels = np.concatenate([train_labels, valid_labels], axis=0)
@@ -105,11 +121,11 @@ def classify_and_evaluate(data_files: dict[str, List[Path]],
 
             predefined_split = PredefinedSplit(test_fold)
 
-            pipeline = get_classification_algorithm()
+            pipeline = get_classification_algorithm(
+                data_type=data_type, classification_algorithm_seed=classification_algorithm_seed
+            )
 
-            param_grid = {
-                'svc__C': [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000],
-            }
+            param_grid = {'svc__C': [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000]}
 
             grid_search = GridSearchCV(pipeline, param_grid, cv=predefined_split, n_jobs=-1)
             grid_search.fit(combined_features, combined_labels)
@@ -117,7 +133,6 @@ def classify_and_evaluate(data_files: dict[str, List[Path]],
             best_classifier = grid_search.best_estimator_
 
             logging.info(f'Best parameters: {grid_search.best_params_}')
-
 
         y_test_pred = best_classifier.predict(test_features)
 
@@ -141,10 +156,11 @@ def classify_and_evaluate(data_files: dict[str, List[Path]],
 
     df_results = pd.DataFrame(rows_for_df)
 
-    results_file_name = add_prefix_to_string(base='classification_results.csv', prefix=output_files_prefix)
+    file_name = f'classifications_results_seed_{classification_algorithm_seed}.csv'
+
+    results_file_name = add_prefix_to_string(base=file_name, prefix=output_files_prefix)
 
     df_results.to_csv(classification_results_output_folder_path / results_file_name, index=False)
 
 
-classify_and_evaluate_raw_data = partial(classify_and_evaluate, data_type='raw')
 classify_and_evaluate_representations = partial(classify_and_evaluate, data_type='representation')
