@@ -1,3 +1,5 @@
+__all__ = ['classify_and_evaluate_representations']
+
 from functools import partial
 import logging
 from pathlib import Path
@@ -15,8 +17,6 @@ from sklearn.svm import SVC
 from experiments.utils.filters import get_data_list_filter
 from experiments.utils.parsers import get_data_file_name_parser
 from utils_general import add_prefix_to_string
-
-__all__ = ['classify_and_evaluate_representations']
 
 
 def get_classification_algorithm(data_type: str, classification_algorithm_seed: int = 42):
