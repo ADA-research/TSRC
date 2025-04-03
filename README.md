@@ -8,7 +8,7 @@ Current status: submitted for journal publication (under review).
 
 # Requirements
 
-Please check the `requirements.txt` file for the required packages.
+Please check the `environment.yaml` file for the required packages.
 
 # Datasets
 

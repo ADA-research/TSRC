@@ -1,0 +1,19 @@
+name: py_311_lightning
+channels:
+  - conda-forge
+  - pytorch
+  - nodefaults
+dependencies:
+    - python=3.11
+    - numpy<2
+    - pandas
+    - scikit-learn
+    - conda-forge::matplotlib
+    - conda-forge::seaborn
+    - pytorch::pytorch==2.1.2
+    - pytorch::torchvision=0.16.2
+    - pytorch::torchaudio=2.1.2
+    - conda-forge::lightning=2.1.4
+    - conda-forge::openpyxl
+    - conda-forge::notebook
+    - conda-forge::h5py
