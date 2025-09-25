@@ -71,7 +71,7 @@ git clone --recurse-submodules
 If you use this code, please cite the following paper:
 
 ```
-\article{skaf-2025-tsrc,
+@article{skaf-2025-tsrc,
   title={Time Series Representations Classroom (TSRC): A Teacher-Student-based Framework for Interpretability-enhanced Unsupervised Time Series Representation Learning},
   author={Skaf, Wadie and Baratchi, Mitra and Hoos, Holger}
   journal={Machine Learning (To appear)},
