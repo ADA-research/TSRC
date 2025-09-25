@@ -1,6 +1,6 @@
 # Official Implementation of the TSRC Paper
 
-[![CC BY 4.0][cc-by-shield]][cc-by]
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 This repository contains the official implementation of the paper **Time Series Representations Classroom (TSRC): A Teacher-Student-based Framework for Interpretability-enhanced Unsupervised Time Series Representation Learning**.
 
@@ -80,13 +80,6 @@ If you use this code, please cite the following paper:
 
 # Licence
 
-This work is licensed under a
-[Creative Commons Attribution 4.0 International License][cc-by].
+This work is licensed under the **Apache License 2.0** - see the [LICENSE](LICENSE) file for details.
 
-[![CC BY 4.0][cc-by-image]][cc-by]
-
-[cc-by]: http://creativecommons.org/licenses/by/4.0/
-
-[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
-
-[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
