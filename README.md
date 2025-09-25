@@ -4,7 +4,7 @@
 
 This repository contains the official implementation of the paper **Time Series Representations Classroom (TSRC): A Teacher-Student-based Framework for Interpretability-enhanced Unsupervised Time Series Representation Learning**.
 
-Authors: Wadie Skaf (@wadieskaf), Mitra Baratchi, Holger Hoos
+Authors: [Wadie Skaf](https://skaf.me), Mitra Baratchi, Holger Hoos
 
 Accepted for publication in the Machine Learning Journal (expected to appear on Springer in 2025).
 
