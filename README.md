@@ -7,7 +7,7 @@ This repository contains the official implementation of the paper **Time Series 
 Authors: [Wadie Skaf](https://skaf.me), Mitra Baratchi, and Holger Hoos
 
 The paper has been accepted for publication in the Machine Learning Journal and is expected to appear on Springer in 2025. 
-**Meanwhile, the paper can be accessed here: [Link](https://2ly.link/2FaeZ).**
+**Meanwhile, the paper can be accessed here: [Link](https://www.aim.rwth-aachen.de/assets/documents/papers/SkafEtAl25.pdf).**
 
 # Requirements
 
@@ -72,9 +72,10 @@ If you use this code, please cite the following paper:
 ```
 @article{skaf-2025-tsrc,
   title={Time Series Representations Classroom (TSRC): A Teacher-Student-based Framework for Interpretability-enhanced Unsupervised Time Series Representation Learning},
-  author={Skaf, Wadie and Baratchi, Mitra and Hoos, Holger}
-  journal={Machine Learning (To appear)},
+  author={Skaf, Wadie and Baratchi, Mitra and Hoos, Holger},
+  journal={Machine Learning},
   year={2025},
+  note={To appear}
 }
 ```
 
