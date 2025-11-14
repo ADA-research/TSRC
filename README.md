@@ -6,8 +6,7 @@ This repository contains the official implementation of the paper **Time Series 
 
 Authors: [Wadie Skaf](https://skaf.me), Mitra Baratchi, and Holger Hoos
 
-The paper has been accepted for publication in the Machine Learning Journal and is expected to appear on Springer in 2025. 
-**Meanwhile, the paper can be accessed here: [Link](https://ada.liacs.nl/papers/SkaEtAl25.pdf).**
+The paper is published in the Machine Learning Journal and can be accessd here: [Link](https://link.springer.com/article/10.1007/s10994-025-06895-x)
 
 # Requirements
 
@@ -75,7 +74,7 @@ If you use this code, please cite the following paper:
   author={Skaf, Wadie and Baratchi, Mitra and Hoos, Holger},
   journal={Machine Learning},
   year={2025},
-  note={To appear}
+  doi={10.1007/s10994-025-06895-x}
 }
 ```
 
