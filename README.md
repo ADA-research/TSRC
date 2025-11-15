@@ -8,7 +8,7 @@ Authors: [Wadie Skaf](https://skaf.me), Mitra Baratchi, and Holger Hoos
 
 The paper is published in the Machine Learning journal and can be accessed here: [Link](https://link.springer.com/article/10.1007/s10994-025-06895-x)
 
-> If you find this repository helpful or insightful, please consider giving it a star ⭐. If you use it in your research, please cite our paper (see [Citation](#citation)).
+> 📌 If you find this repository helpful or insightful, please consider **giving it a star ⭐**. If you use it in your research, please **cite our paper** (see [Citation](#citation)).
 
 # Requirements
 
